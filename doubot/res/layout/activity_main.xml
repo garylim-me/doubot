@@ -1,0 +1,112 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:layout_margin="40dp" >
+
+    
+    <ToggleButton
+        android:id="@+id/CameraButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textOff="START DOUBOT"
+        android:textOn="TRANSMITTING DATA" 
+        android:layout_marginBottom="20dp" >
+    </ToggleButton>
+    
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Doubot&apos;s IP (this device):" />
+
+    <EditText
+        android:id="@+id/Doubot_IP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp" >
+    </EditText>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Controller&apos;s IP (remote device):" />
+
+    <EditText
+        android:id="@+id/Controller_IP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Not connected" 
+        android:layout_marginBottom="40dp">
+    </EditText>
+
+    
+    <ToggleButton
+        android:id="@+id/btnManualCommand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textOff="MANUAL OVERRIDE OFF"
+        android:textOn="MANUAL OVERRIDE ON"
+        android:layout_marginBottom="20dp"  >
+    </ToggleButton>
+    
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Channel 3" />
+
+    <SeekBar
+        android:id="@+id/seekBar3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:max="1000"
+        android:progress="500"
+        android:layout_marginBottom="20dp" />
+
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Left" />
+
+    <SeekBar
+        android:id="@+id/seekBar5"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:max="1000"
+        android:progress="500" 
+        android:layout_marginBottom="20dp" />
+
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Right" />
+
+    <SeekBar
+        android:id="@+id/seekBar7"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:max="1000"
+        android:progress="500" />
+
+    
+    
+    <SurfaceView
+	    android:id="@+id/PREVIEW"
+	    android:layout_width="1dip"
+	    android:layout_height="1dip"/>
+    
+</LinearLayout>
+
+<!-- 
+    <ToggleButton
+        android:id="@+id/btnGcsCommand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textOff="GCS control off"
+        android:textOn="GCS control on" >
+    </ToggleButton>
+    
+    -->
+
