@@ -75,6 +75,8 @@ public class MainActivity extends IOIOActivity {
 		togglebutton = (ToggleButton) findViewById(R.id.CameraButton);
 		togglebutton.setOnClickListener(new btnListener());		
 
+		
+		
 		//Manual Sliders:
 		btnManualCommand = (ToggleButton) findViewById(R.id.btnManualCommand);
 		seekBar3 = (SeekBar) findViewById(R.id.seekBar3);
@@ -127,6 +129,10 @@ public class MainActivity extends IOIOActivity {
 		
 //		wifiLock=wim.createWifiLock(WifiManager.WIFI_MODE_FULL , "MyWifiLock");
 //		wifiLock.acquire();
+		
+		//Get threads started:
+		togglebutton.setChecked(true);
+		StartMainThread();
 	}
 
 	
@@ -142,38 +148,43 @@ public class MainActivity extends IOIOActivity {
 		public void onClick(View v) {		
 			// Perform action on clicks
 			if (togglebutton.isChecked()) {
-				ControllerIP = edittextControllerIP.getText().toString(); 
-				edittextControllerIP.setText("listening...");
-				
-				mainThread = new MainThread(MainActivity.this, sensorManager, view, UIHandler, IOIOHandler);
-				new Thread(mainThread).start(); //calls the init method
-				
-				// sensor disabled for now				
-				 sensorsThread = mainThread.sensorsThread;				
-				 
-//				 sensorManager.registerListener(sensorsThread, 
-//						SensorManager.SENSOR_ORIENTATION |SensorManager.SENSOR_ACCELEROMETER,
-//						SensorManager.SENSOR_DELAY_UI);
-				
-//				 SensorManager sensorService = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-				 Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION|Sensor.TYPE_ACCELEROMETER );
-				 if (sensor != null) {
-					 sensorManager.registerListener(sensorsThread, sensor,
-				     SensorManager.SENSOR_DELAY_NORMAL);
-				     Log.d("MainActivity", "sensors registered");
-
-				 } else {
-					 Log.d("MainActivity", "sensors register ERROR");	
-				 }
-
-				Toast.makeText(MainActivity.this, "Start streaming", Toast.LENGTH_SHORT).show();
+				StartMainThread();
 			} 
 			else {
 				mainThread.stop_threads();
-				sensorManager.unregisterListener(sensorsThread);
+//				sensorManager.unregisterListener(sensorsThread);
 				Toast.makeText(MainActivity.this, "Stop streaming", Toast.LENGTH_SHORT).show();
 			}
 		}
+	}
+	
+	private void StartMainThread() {
+		ControllerIP = edittextControllerIP.getText().toString(); 
+		edittextControllerIP.setText("listening...");
+		
+		mainThread = new MainThread(MainActivity.this, sensorManager, view, UIHandler, IOIOHandler);
+		new Thread(mainThread).start(); //calls the init method
+		
+		// sensor disabled for now				
+//		 sensorsThread = mainThread.sensorsThread;				
+//		 
+////		 sensorManager.registerListener(sensorsThread, 
+////				SensorManager.SENSOR_ORIENTATION |SensorManager.SENSOR_ACCELEROMETER,
+////				SensorManager.SENSOR_DELAY_UI);
+//		
+////		 SensorManager sensorService = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+//		 Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION|Sensor.TYPE_ACCELEROMETER );
+//		 if (sensor != null) {
+//			 sensorManager.registerListener(sensorsThread, sensor,
+//		     SensorManager.SENSOR_DELAY_NORMAL);
+//		     Log.d("MainActivity", "sensors registered");
+//
+//		 } else {
+//			 Log.d("MainActivity", "sensors register ERROR");	
+//		 }
+
+		Toast.makeText(MainActivity.this, "Start streaming", Toast.LENGTH_SHORT).show();
+		
 	}
 
 	class Looper extends BaseIOIOLooper {

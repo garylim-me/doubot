@@ -46,7 +46,7 @@ public class MainThread implements Runnable {
     public void run() {
     	
     	 // Moves the current Thread into the background
-        android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_BACKGROUND);
+        android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_MORE_FAVORABLE);
     	Log.d("MainThread", "MAIN THREAD STARTED");
     	
     	DatagramSocket socket=null;
